@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  subir-data:
+    build: .
+    container_name: subir-data-container
+    volumes:
+      - ./data:/app/data
+    restart: "no"

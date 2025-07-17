@@ -1,0 +1,8 @@
+services:
+  - type: docker
+    name: simulador-api
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: "10000"
+    autoDeploy: true
