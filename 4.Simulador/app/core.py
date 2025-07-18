@@ -102,7 +102,7 @@ def simular_libranza(nro_libranza: int) -> dict:
     # Saldo cierre mes 0
     saldo_cierre_mes_0 = data.loc[data["nolibra"] == nro_libranza, "saldo_cierre_mes_0"].values[0]
     # Cuotas pagas mes
-    cuotas_paga_mes = data.loc[data["nolibra"] == nro_libranza, "cuotas Pagas"].values[0]
+    cuotas_paga_mes = data.loc[data["nolibra"] == nro_libranza, "cuotas_pagas"].values[0]
     # Cuotas causadas calculadas
     diff = relativedelta(corte_saldo_sistema, pd.to_datetime(data.loc[data["nolibra"] == nro_libranza, "fecha_inicio_credito"].values[0]))
     cuotas_causadas = diff.years * 12 + diff.months + 1

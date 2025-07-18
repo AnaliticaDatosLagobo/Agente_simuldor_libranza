@@ -1,7 +1,11 @@
 services:
-  - type: docker
+  - type: web
     name: simulador-api
-    dockerfilePath: ./Dockerfile
+    env: docker
+    dockerfilePath: 4.Simulador/Dockerfile
+    buildFilter:
+      paths:
+        - 4.Simulador/**
     envVars:
       - key: PORT
         value: "10000"
