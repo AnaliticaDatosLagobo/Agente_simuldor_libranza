@@ -3,9 +3,6 @@ services:
     name: simulador-api
     env: docker
     dockerfilePath: 4.Simulador/Dockerfile
-    buildFilter:
-      paths:
-        - 4.Simulador/**
     envVars:
       - key: PORT
         value: "10000"
