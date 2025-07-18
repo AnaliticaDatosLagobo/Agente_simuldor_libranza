@@ -16,40 +16,40 @@ import os
 #df_tasa_usura = pd.read_sql('SELECT * FROM "Tasa_usura"', engine)
 
 
-nro_libranza = 53114
+#nro_libranza = 53114
 
 
 import os
 import pandas as pd
 from sqlalchemy import create_engine
 from sqlalchemy.pool import NullPool
-
-# Leer URL de conexión desde variable de entorno
-DATABASE_URL = 'postgresql://postgres.ixnhworgyhvqsojyocld:Lagobo20255@aws-0-us-east-1.pooler.supabase.com:6543/postgres'
-url = os.environ.get("DATABASE_URL")
-
-# Crear engine sin pool local (usa el de Supabase)
-engine = create_engine(
-    url,
-    connect_args={"sslmode": "require"},
-    poolclass=NullPool
-)
+import pandas as pd
 
 
-# Funciones para obtener datos (cuando se necesiten)
+
+import pandas as pd
+
+# URLs correctas (versión raw)
+url_data_final = "https://raw.githubusercontent.com/AnaliticaDatosLagobo/Agente_simuldor_libranza/main/3.Subir_datos/1.Base_capital/data/Data_final.xlsx"
+
+url_fecha_pagaduria = "https://raw.githubusercontent.com/AnaliticaDatosLagobo/Agente_simuldor_libranza/23f42d548091c5e69640cd7fa46808c8d55f480c/3.Subir_datos/2.Fechas_pagadurias/Fecha_pagaduria.xlsx"
+
+url_tasa_usura = "https://raw.githubusercontent.com/AnaliticaDatosLagobo/Agente_simuldor_libranza/23f42d548091c5e69640cd7fa46808c8d55f480c/3.Subir_datos/3.Tasa_usura/Tasa_usura.xlsx"
+
+# Leer archivos
+df_data_final = pd.read_excel(url_data_final)
+df_fecha_pagaduria = pd.read_excel(url_fecha_pagaduria)
+df_tasa_usura = pd.read_excel(url_tasa_usura)
+
+# === 3. Funciones para obtener datos filtrados ===
 def get_data_final(nro_libranza: int):
-    query = f'''
-        SELECT *
-        FROM "data_final_2"
-        WHERE "nolibra" = {nro_libranza}
-    '''
-    return pd.read_sql(query, engine)
+    return df_data_final[df_data_final["nolibra"] == nro_libranza]
 
 def get_data_pagaduria():
-    return pd.read_sql('SELECT * FROM "Fecha_pagaduria"', engine)
+    return df_fecha_pagaduria
 
 def get_tasa_usura():
-    return pd.read_sql('SELECT * FROM "Tasa_usura"', engine)
+    return df_tasa_usura
 
 
 def simular_libranza(nro_libranza: int) -> dict:
@@ -354,5 +354,5 @@ def simular_libranza(nro_libranza: int) -> dict:
         "saldo actual": saldo_actual,
         #"tabla_amortizacion": df_final.to_dict(orient="records")[:40]  # limitar a 40 filas
     }
-
+    
     return resultado

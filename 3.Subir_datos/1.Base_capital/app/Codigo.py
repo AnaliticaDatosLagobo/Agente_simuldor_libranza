@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 
 # === 1. Leer el archivo Excel ===
 #archivo_excel = "data/TB_BASE.xlsx"
-archivo_excel = r"D:\Datos\Documents\GitHub\2025\Agente_Libranza\3.Subir_datos\1.Base_capital\data\Data_final.xlsx" 
+archivo_excel = r"D:\Datos\Documents\GitHub\2025\Agente_simuldor_libranza\3.Subir_datos\1.Base_capital\data\Data_final.xlsx" 
 df = pd.read_excel(archivo_excel)
 
 # === 2. Datos de conexión a Supabase ===
